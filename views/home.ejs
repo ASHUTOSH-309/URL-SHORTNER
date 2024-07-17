@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>URL SHORTNER</h1>
+
+    <% if(locals.id ) {%>
+        <h2>GENERATED REDIRECTION URL IS: http://localhost:8040/url/<%= locals.id %>
+        </h2>
+        <% } %>
+            <div>
+                <form method="post" action="/url">
+                    <label>Enter Your Original URL</label>
+                    <input type="text" name="url" placeholder="https://example.com">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <tr>
+
+                        <th>S.No</th>
+                        <th>Redirection URL</th>
+                        <th>Generated ID</th>
+                        <th>TotalClicks</th>
+                    </tr>
+
+            
+
+
+                       <%    locals.urls.map((url,index)=>{ %>
+                            <tr>
+                                <td><%= index+1 %></td>
+                                <td> <%= url.redirectURL  %> </td>
+                                <td> <%= url.shortId %> </td>
+                                <td>  <%= url.visitHistory.length  %> </td>
+                            </tr> <%})%>
+
+
+                        
+                   
+                </table>
+
+
+
+
+            </div>
+
+
+</body>
+
+</html>
